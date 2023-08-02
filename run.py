@@ -1,5 +1,26 @@
 import random
 import time
+import os
+
+class Character:
+    """
+    Initialize player character
+    """
+    def __init__(self):
+        self.name = ""
+        self.maxhealth = 1
+        self.current_health = 1
+        self.attack = 1
+
+class Dragon:
+    """
+    Initialize dragon enemy character
+    """
+    def __init__(self):
+        self.name = "Dragon"
+        self.maxhealth = 1
+        self.current_health = 1
+        self.attack = 1
 
 
 def print_pause(message):
@@ -14,6 +35,11 @@ def intro():
     """
     Prints the message to welcome player to the game and set the environment of the world
     """
+    c = Character()
+    players_name = input('Please enter your character name:\n')
+    c.name = players_name
+    os.system('clear')
+    print_pause(f'Welcome, {c.name}!')
     print_pause("You find yourself at the entrance to the dungeon")
     print_pause("It full of dark secrets and treasurs")
     print_pause("But most important - it is a lair of the mighty dragon!")
@@ -42,9 +68,10 @@ def player_start_selection():
         player_start_selection()
 
 def start_game():
+    os.system('clear')
     print_pause('Game has started\n')
 
+
 intro()
-    
 
 
