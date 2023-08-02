@@ -2,6 +2,7 @@ import random
 import time
 import os
 
+
 class Character:
     """
     Initialize player character
@@ -14,7 +15,9 @@ class Character:
         self.armor = 0
         self.potion = 2
 
+
 character = Character()
+
 
 class Dragon:
     """
@@ -26,19 +29,24 @@ class Dragon:
         self.current_health = 50
         self.attack = 10
 
+
 dragon = Dragon()
+
 
 def print_pause(message):
     """
-    Print a message after a short delay to give enough time for a player to read the message
+    Print a message after a short delay
+    to give enough time for a player to read the message
     """
     print(message)
     time.sleep(1)
 
-def start_game():   
+
+def start_game():
     """
-    Ask a player to input the name for their character and asisgns it to the Character class
-    """ 
+    Ask a player to input the name for their character
+    and asisgns it to the Character class
+    """
     players_name = input('Please enter your character name:\n')
     player.name = players_name
     print_pause(f'Your name is {player.name}!')
@@ -49,11 +57,12 @@ def start_game():
     print_pause("")
     intro()
 
+
 def intro():
     """
-    Prints the message to welcome player to the game and set the environment of the world
-    """  
-    
+    Prints the message to welcome player to the game
+    and set the environment of the world
+    """
     os.system('clear')
     print_pause(f'Welcome, {player.name}!')
     print_pause("You find yourself at the entrance to the dungeon")
@@ -64,24 +73,23 @@ def intro():
 
     player_start_selection()
 
-    
 
 def player_start_selection():
     """
     Take player input to start/close the game
     Gives a message if input doesnt match and ask the enter selection once more
     """
-    player_choice = input('Press "Y" if you are ready, or "N" if you are affraid of danger: \n')
+    player_choice = input('Press "Y" if ready, or "N" if you are not:\n')
 
-    
     if player_choice.lower() == 'y':
-        first_room()        
+        first_room()
     elif player_choice.lower() == 'n':
         print_pause('You decided to exit the game\n')
         exit()
     else:
         print('Please select valid option: "Y" or "N" only\n')
         player_start_selection()
+
 
 def first_room():
     """
@@ -98,6 +106,7 @@ def first_room():
     print_pause('Left or Right')
     corridor_selection()
 
+
 def corridor_selection():
     """
     Takes input from the player depending which direction they want to go
@@ -113,6 +122,7 @@ def corridor_selection():
         print('Please select valid option: "Left" or "Right"\n')
         corridor_selection()
 
+
 def trap_room():
     """
     When player walks into trap room it deals the damage
@@ -121,7 +131,7 @@ def trap_room():
     """
     os.system('clear')
     print_pause('You enter the room to the right and trigger the trap')
-    damage = random.randint(1, 5)    
+    damage = random.randint(1, 5)
     print_pause(f'Trap deals {damage} damage')
     player.current_health -= damage
     current_player_health()
@@ -169,13 +179,13 @@ def open_chest():
 
     while True:
         sacrifice_option = input('Will you sacrifice "Health" or "Potion"?:\n')
-        
-        if sacrifice_option.lower() == 'health' or sacrifice_option.lower() == 'potion' :
+        if sacrifice_option.lower() == 'health' or sacrifice_option.lower() == 'potion':
             option = sacrifice_option.lower()
             sacrifice(option)
             return False
         else:
             print_pause('Please chose the correct option: "Health" or "Potion"!')
+
 
 def sacrifice(option):
     """
@@ -197,7 +207,6 @@ def sacrifice(option):
         print_pause('As a reward, you receive "+3" to Attack, and "+1" to Potion')
         current_player_attack()
         current_player_potion()
-        
 
     if option == "potion":
         player.potion -= 1
@@ -210,6 +219,7 @@ def sacrifice(option):
         current_player_armor()
     dragon_lair()
 
+
 def dragon_lair():
     """
     Final room where the dragon lives
@@ -220,24 +230,29 @@ def dragon_lair():
 
 
 def current_player_health():
-    #Print player's health stats
+    # Print player's health stats
     print_pause(f'Your current health is {player.current_health}')
 
+
 def current_player_potion():
-    #Print player's potion stats
+    # Print player's potion stats
     print_pause(f'Your current potion number is {player.potion}')
 
+
 def current_player_armor():
-    #Print player's armor stats
+    # Print player's armor stats
     print_pause(f'Your current armor is {player.armor}')
 
+
 def current_player_attack():
-    #Print player's attack stats
+    # Print player's attack stats
     print_pause(f'Current attack is {player.attack}')
 
+
 def current_enemy_health():
-    #Print dragon's health stats
+    # Print dragon's health stats
     print_pause(f'Dragon current health is {enemy.current_health}')
+
 
 """
 Create global variables to have access to Player character and Dragon enemy attributes
@@ -249,5 +264,3 @@ enemy = dragon
 
 
 start_game()
-
-
