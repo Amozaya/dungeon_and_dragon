@@ -250,6 +250,59 @@ def final_fight():
     """
     os.system('clear')
     print_pause(f'{player.name} is fighting the dragon')
+    current_player_health()
+    current_player_potion()
+    current_enemy_health()
+    print('You attack first')
+    print('Chose your move: ')
+    print('1 - Attack')
+    print('2 - Use potion to restore health')
+    print('3 - Try to run past the dragon to escape')
+    print('"Running away has a very little chance of surviving"')
+
+
+    while True:
+        move = input('>>> ')
+        if move == '1':
+            player_attack()
+            return False
+        
+        elif move == '2':
+            if player.potion > 0:
+                use_potion()
+                return False
+            else:
+                print('You are out of potions')
+        elif move == '3':
+            escape_fight()
+            return False
+        else:
+            print('Invalid option. Please select the valid move!')
+
+
+def player_attack():
+    print_pause(f'{player.name} attacks the dragon')
+    enemy_attack()
+    
+
+def use_potion():
+    print_pause('You drink the potion')
+    player.potion -= 1
+    print_pause('You restore 20 health')
+    current_player_health()
+    enemy_attack()
+    
+
+def escape_fight():
+    print_pause('You decided to try to run away')
+
+
+def enemy_attack():
+    print_pause(f'Dragon attacks {player.name}')
+    final_fight()
+
+
+
 
 
 
@@ -270,7 +323,7 @@ def current_player_armor():
 
 def current_player_attack():
     # Print player's attack stats
-    print_pause(f'Current attack is {player.attack}')
+    print_pause(f'Current max attack is {player.attack}')
 
 
 def current_enemy_health():
@@ -289,4 +342,4 @@ global enemy
 enemy = dragon
 
 
-dragon_lair()
+final_fight()
