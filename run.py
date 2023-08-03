@@ -8,11 +8,11 @@ class Character:
     Initialize player character
     """
     def __init__(self):
-        self.name = ""
-        self.maxhealth = 30
+        self.name = "Hero"
+        self.maxhealth = 10
         self.current_health = self.maxhealth
         self.attack = 7
-        self.armor = 0
+        self.armor = 10
         self.potion = 2
 
 
@@ -249,10 +249,11 @@ def final_fight():
     After player makes a choise they get attacked by a dragon
     Repeats until someone dies
     """
-    os.system('clear')
-    print_pause(f'{player.name} is fighting the {enemy.name}')
+    #os.system('clear')
+    print_pause(f'\n{player.name} is fighting the {enemy.name}')
     current_player_health()
     current_player_potion()
+    current_player_armor()
     current_enemy_health()
     print('You attack first')
     print('Chose your move: ')
@@ -287,7 +288,7 @@ def player_attack():
     Checks if dragon got any health left
     If dragon health <= 0 wins the game
     """
-    print_pause(f'{player.name} attacks the {enemy.name}')
+    print_pause(f'\n{player.name} attacks the {enemy.name}')
     damage = random.randint(round(player.attack / 2), player.attack)
     print_pause(f'You deal {damage} damage to {enemy.name}')
     enemy.current_health -= damage
@@ -310,11 +311,61 @@ def escape_fight():
 
 
 def enemy_attack():
-    print_pause(f'Dragon attacks {player.name}')
-    final_fight()
+    """
+    Enemy attacks the player and causes damage
+    Checks if player got any health left
+    Checks if player got any armor left
+    If player health <= 0 lose the game
+    """
+    print_pause(f'\n{enemy.name} attacks the {player.name}')
+    if random.randint(0, 3) <= 2:
+        print_pause(f'{enemy.name} attacks with Base Attack')
+        damage = random.randint(round(enemy.attack / 2), enemy.attack)
+        has_armor(damage)        
+    else:
+        print_pause(f'{enemy.name} attacks {player.name} with Fire Breath')
+        print_pause('It melts your armor and burns your skin underneath')
+        if player.armor > 0:
+            print_pause(f'{enemy.name} does 3 damage to {player.name}')
+            has_armor(5)
+            player.current_health -= 3
+        else:
+            print_pause(f'{enemy.name} does 8 damage to {player.name}')
+            player.current_health -= 8
+    check_player_health()
+    
 
-
-
+def has_armor(damage):
+    """
+    Checks if player got any armor left
+    If yes, reduces the armor
+    Any excess damage will be taken from health
+    If no armor then damaged cause directly to health
+    """
+    if player.armor > 0:
+        player.armor -= damage
+        print(f'Armor reduced by {damage}')
+        if player.armor <= 0:
+            print('You armor is destroyed')
+            player.armor = 0
+    else:
+        player.current_health -= damage
+        print_pause(f'{enemy.name} does {damage} damage to {player.name}')
+    
+    
+def check_player_health():
+    """
+    Checks if player got any health left
+    If yes, carry on fight
+    If no, stops the game
+    """
+    if player.current_health > 0:
+        final_fight()
+    else:
+        player.current_health = 0
+        current_player_armor()
+        current_player_health()
+        lose()
 
 
 
