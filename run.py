@@ -11,7 +11,7 @@ class Character:
         self.name = ""
         self.maxhealth = 30
         self.current_health = self.maxhealth
-        self.attack = 5
+        self.attack = 7
         self.armor = 0
         self.potion = 2
 
@@ -245,11 +245,12 @@ def final_fight():
     First it gives player to chose their option:
     - attack the dragon
     - use potion to refil their health
+    - run away to finish the game without fighting
     After player makes a choise they get attacked by a dragon
     Repeats until someone dies
     """
     os.system('clear')
-    print_pause(f'{player.name} is fighting the dragon')
+    print_pause(f'{player.name} is fighting the {enemy.name}')
     current_player_health()
     current_player_potion()
     current_enemy_health()
@@ -281,8 +282,19 @@ def final_fight():
 
 
 def player_attack():
-    print_pause(f'{player.name} attacks the dragon')
-    enemy_attack()
+    """
+    Player attacks the gragon and causes damage
+    Checks if dragon got any health left
+    If dragon health <= 0 wins the game
+    """
+    print_pause(f'{player.name} attacks the {enemy.name}')
+    damage = random.randint(round(player.attack / 2), player.attack)
+    print_pause(f'You deal {damage} damage to {enemy.name}')
+    enemy.current_health -= damage
+    if enemy.current_health > 0:
+        enemy_attack()
+    else:
+        win()
     
 
 def use_potion():
