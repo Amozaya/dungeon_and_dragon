@@ -289,7 +289,6 @@ def player_attack():
     """
     Player attacks the gragon and causes damage
     Checks if dragon got any health left
-    If dragon health <= 0 wins the game
     """
     print_pause(f'\n{player.name} attacks the {enemy.name}')
     print('-----------------------------------------------------')
@@ -319,6 +318,31 @@ def use_potion():
 def escape_fight():
     print('-----------------------------------------------------')
     print_pause('You decided to try to run away')
+    print_pause('Will you be lucky enough to escape?')
+    print_pause('Roll a die to find out')
+    print_pause('"Need 15 or higher to succseed"')
+    print('-----------------------------------------------------')
+    input('\nPress any key to roll...')
+    roll_die()
+
+
+def roll_die():
+    roll = random.randint(1, 18)
+
+    if roll >= 15:
+        print_pause(f'You rolled {roll}')
+        print_pause('Luck is on your side')
+        print_pause('You manage to escape the dragon and survive')
+        print_pause('However, you earned no glory, nor treasurs')
+        print_pause('Maybe next time you will be more brave...')
+        restart_game()
+    else:
+        print_pause(f'You rolled {roll}')
+        print_pause('Luck has abandoned you')
+        print_pause(f'{enemy.name} was quicker than you')
+        print_pause('You got caught trying to escape and died!')
+        print_pause('Better luck next time')
+        restart_game()
 
 
 def enemy_attack():
@@ -363,7 +387,13 @@ def has_armor(damage):
     else:
         player.current_health -= damage
         print_pause(f'{enemy.name} does {damage} damage to {player.name}')
-    
+
+def restart_game():
+    print("")
+    print('-----------------------------------------------------')
+    print("")
+    print('Would you like to start a new game?\n')
+
     
 def check_player_health():
     """
@@ -380,6 +410,11 @@ def check_player_health():
         lose()
 
 def check_enemy_health():
+    """
+    Checks enemy health
+    If health is > 0, continue the fight
+    If health is < 0, win the game
+    """
     if enemy.current_health > 0:
         current_enemy_health()
         enemy_attack()
@@ -391,6 +426,12 @@ def current_player_health():
     # Print player's health stats
     print_pause(f'Your current health is {player.current_health}')
 
+
+def win():
+    print_pause('You won the game')
+
+def lose():
+    print_pause('You lost the game')
 
 def current_player_potion():
     # Print player's potion stats
