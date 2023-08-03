@@ -236,6 +236,7 @@ def dragon_lair():
     print_pause('There is no escape from this room')
     print_pause('You draw your sword and prepare to fight')
     input('\nPress any key to start...')
+    os.system('clear')
     final_fight()
 
 
@@ -255,12 +256,14 @@ def final_fight():
     current_player_potion()
     current_player_armor()
     current_enemy_health()
+    print('-----------------------------------------------------')
     print('You attack first')
     print('Chose your move: ')
     print('1 - Attack')
     print('2 - Use potion to restore health')
     print('3 - Try to run past the dragon to escape')
     print('"Running away has a very little chance of surviving"')
+    print('-----------------------------------------------------')
 
 
     while True:
@@ -289,24 +292,32 @@ def player_attack():
     If dragon health <= 0 wins the game
     """
     print_pause(f'\n{player.name} attacks the {enemy.name}')
+    print('-----------------------------------------------------')
     damage = random.randint(round(player.attack / 2), player.attack)
-    print_pause(f'You deal {damage} damage to {enemy.name}')
+    print_pause(f'You deal {damage} damage to {enemy.name}')    
     enemy.current_health -= damage
-    if enemy.current_health > 0:
-        enemy_attack()
-    else:
-        win()
+    check_enemy_health()
     
 
 def use_potion():
+    """
+    Player consumes 1 potion to restore health
+    If restored health will be more than maxhealth
+    it sets current health to maxhealth
+    """
+    print('-----------------------------------------------------')
     print_pause('You drink the potion')
     player.potion -= 1
     print_pause('You restore 20 health')
+    player.current_health += 20
+    if player.current_health > player.maxhealth:
+        player.current_health = player.maxhealth
     current_player_health()
     enemy_attack()
     
 
 def escape_fight():
+    print('-----------------------------------------------------')
     print_pause('You decided to try to run away')
 
 
@@ -318,18 +329,20 @@ def enemy_attack():
     If player health <= 0 lose the game
     """
     print_pause(f'\n{enemy.name} attacks the {player.name}')
+    print('-----------------------------------------------------')
     if random.randint(0, 3) <= 2:
         print_pause(f'{enemy.name} attacks with Base Attack')
         damage = random.randint(round(enemy.attack / 2), enemy.attack)
         has_armor(damage)        
     else:
-        print_pause(f'{enemy.name} attacks {player.name} with Fire Breath')
-        print_pause('It melts your armor and burns your skin underneath')
+        print_pause(f'{enemy.name} attacks {player.name} with Fire Breath')        
         if player.armor > 0:
+            print_pause('It melts your armor and burns your skin underneath')
             print_pause(f'{enemy.name} does 3 damage to {player.name}')
             has_armor(5)
             player.current_health -= 3
         else:
+            print_pause('Fire Breath burns your skin')
             print_pause(f'{enemy.name} does 8 damage to {player.name}')
             player.current_health -= 8
     check_player_health()
@@ -338,8 +351,7 @@ def enemy_attack():
 def has_armor(damage):
     """
     Checks if player got any armor left
-    If yes, reduces the armor
-    Any excess damage will be taken from health
+    If yes, reduces the armor    
     If no armor then damaged cause directly to health
     """
     if player.armor > 0:
@@ -367,7 +379,13 @@ def check_player_health():
         current_player_health()
         lose()
 
-
+def check_enemy_health():
+    if enemy.current_health > 0:
+        current_enemy_health()
+        enemy_attack()
+    else:
+        print_pause(f'You defeated the {enemy.name}')
+        win()
 
 def current_player_health():
     # Print player's health stats
