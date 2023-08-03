@@ -16,7 +16,6 @@ class Character:
         self.potion = 2
 
 
-character = Character()
 
 
 class Dragon:
@@ -30,7 +29,6 @@ class Dragon:
         self.attack = 10
 
 
-dragon = Dragon()
 
 
 def print_pause(message):
@@ -226,7 +224,33 @@ def dragon_lair():
     It will introduce player to the dragon and start the fight
     """
     os.system('clear')
-    print_pause('You walk away from the chest toward the corridor that leads you to the next room')
+    print_pause('You walk away from the chest and make your way deeper into the dungeon')
+    print_pause('Finally you arrive to the last room')
+    print_pause('You look around...')
+    print_pause('The room is full of treasuers')
+    print_pause('And the bones of fallen heroes')
+    print_pause("It's a dragon lair!")
+    print_pause('You start hearing some heavy steps')
+    print_pause('They are getting closer...')
+    print_pause('The dragon has returned!')
+    print_pause('There is no escape from this room')
+    print_pause('You draw your sword and prepare to fight')
+    input('\nPress any key to start...')
+    final_fight()
+
+
+def final_fight():
+    """
+    Determinds the main fight logic
+    First it gives player to chose their option:
+    - attack the dragon
+    - use potion to refil their health
+    After player makes a choise they get attacked by a dragon
+    Repeats until someone dies
+    """
+    os.system('clear')
+    print_pause(f'{player.name} is fighting the dragon')
+
 
 
 def current_player_health():
@@ -257,10 +281,12 @@ def current_enemy_health():
 """
 Create global variables to have access to Player character and Dragon enemy attributes
 """
+character = Character()
+dragon = Dragon()
 global player
 player = character
 global enemy
 enemy = dragon
 
 
-start_game()
+dragon_lair()
