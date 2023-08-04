@@ -86,7 +86,7 @@ It is possible to try and `escape` the fight, but it got a low chance of succsee
 
     ![Fight options](assets/images/fight_options.JPG)
 
-        - By chosing `1` player attacks the dragon. There is a small chance of `miss` and `critical damage`
+    - By chosing `1` player attacks the dragon. There is a small chance of `miss` and `critical damage`
 
         ![Player attack](assets/images/player_attack.JPG)
 
@@ -96,11 +96,11 @@ It is possible to try and `escape` the fight, but it got a low chance of succsee
 
         ![Missed attack](assets/images/missed_attack.JPG)
 
-        - By chosing `2` player will drink the potion and restore some amount of their health
+    - By chosing `2` player will drink the potion and restore some amount of their health
 
         ![Drink potion](assets/images/use_potion.JPG)
 
-        - By chosing `3` player will end the fight, but there is a high chance of losing the game
+    - By chosing `3` player will end the fight, but there is a high chance of losing the game
 
         ![Die roll](assets/images/die_roll.JPG) 
 
@@ -149,6 +149,30 @@ It is possible to try and `escape` the fight, but it got a low chance of succsee
 * Add more traps, chest, enemies
 
 * Make random paths
+
+
+## Data Model
+
+For this game I used Character and Dragon class for game characters. It allowed me to store and modify the attributes, such as name, health, attack, armor, and potion.
+
+I created functions that would access those attributes and print them out for a user, so user is always aware what the stats are for their character and for the enemy. 
+
+I also created attack functions that would access the `Maxattack` attribute from the class and ue it in the formula to calculate the damage of the attack.
+
+### Libraries
+
+I imported and used the following libraries:
+
+- `random` - used to create a randomize damage from attacks and trap, as well as the chance of critical damage and missed attack. Also, it used when rolling a die to see if escape is succssesful
+
+- `os` - used to run a command ```os.system(\`clear\`)``` to clear the screen when th fight starts. Helps to keep the console cleaner for the user
+
+- `math` - used `math.floor` and `math.round` when calculating the damage
+
+-`time` - used `time.sleep(1.5)` to reduce the time that instructions appear with, allowing more time for a user to read all of the instructions
+
+
+
 
 
 
