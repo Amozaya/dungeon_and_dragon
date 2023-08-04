@@ -385,7 +385,7 @@ def enemy_attack():
     """
     print_pause(f'\n{enemy.name} attacks {player.name}')
     print('-----------------------------------------------------')
-    if random.randint(0, 3) <= 2:
+    if random.randint(0, 5) <= 3:
         print_pause(f'{enemy.name} attacks with Base Attack')
         damage = random.randint(round(enemy.attack / 2), enemy.attack)
         has_armor(damage)
@@ -439,7 +439,6 @@ def check_player_health():
         final_fight()
     else:
         player.current_health = 0
-        current_player_armor()
         current_player_health()
         lose()
 
@@ -478,8 +477,7 @@ def lose():
     Notifies the player that they died and lose the game
     Stops the game
     """
-    os.system('clear')
-    print_pause(f'The {enemy.name} has defeated {player.name}')
+    print_pause(f'\nThe {enemy.name} has defeated {player.name}')
     print_pause('Unfortunately, you have fallen')
     print_pause('Just as many heroes have fallen before you')
     print_pause('Who will be brave enough to try next?')
