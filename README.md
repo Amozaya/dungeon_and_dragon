@@ -1,10 +1,10 @@
 # Dungeon & Dragon
 
-3D Academy is an online school for people who want to learn how to create amazing 3D Models for Games or VFX. This website will be useful for people with different levels of 3D modeling knowledge, either people who are completely new, or people who are looking to extend their knowledge. 
+Dungeon & Dragon is a text based RPG fantasy game, which runs in the terminal on Heroku.
 
-This website will provide the information about the school and mentor, who will be running the program, and different types of courses this school offers. This website also provides a gallery with mentor's work and a sign-up form for people who want to join the school or get more informattion about the courses.
+User plays as a brave hero exploring the dragon's lair. The aim of the game is to find the lair and defeat the dragon using your skills, and a bit of luck.
 
-![Responsive Check Screenshot](assets/images/website-responsivnes.JPG)
+![Heading](assets/images/heading.JPG)
 
 ## Features
 
