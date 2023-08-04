@@ -82,13 +82,74 @@ It is possible to try and `escape` the fight, but it got a low chance of succsee
 
     - Fight is turn based
 
-    - Player got 3 options available
+    - Player got 3 options available:
 
     ![Fight options](assets/images/fight_options.JPG)
 
-    - By chosing `1` player attacks the dragon. There is a small chance of `miss` and `critical damage`
+        - By chosing `1` player attacks the dragon. There is a small chance of `miss` and `critical damage`
 
-    
+        ![Player attack](assets/images/player_attack.JPG)
+
+
+        ![Critical damage](assets/images/critical_attack.JPG)
+
+
+        ![Missed attack](assets/images/missed_attack.JPG)
+
+        - By chosing `2` player will drink the potion and restore some amount of their health
+
+        ![Drink potion](assets/images/use_potion.JPG)
+
+        - By chosing `3` player will end the fight, but there is a high chance of losing the game
+
+        ![Die roll](assets/images/die_roll.JPG) 
+
+        ![Unlucky die roll](assets/images/unlucky_die_roll.JPG)
+
+
+* Dragon attacks:
+
+    - Dragon has two types of attacks, which are random:
+
+        - Base attack deals physical damage
+
+        - If player got armor, it will first target the armor. If armor drops to `0` then it will be destroyed and dragon will deal the damage directly to health
+
+        ![Destroyed armor](assets/images/destroy_armor.JPG)
+
+        - "Fire Breath" deals fire damage
+
+        - If player got armor, it deals high damage to the armor and small damage to health
+
+        - If player got no armor then it deals high damage to health
+
+        ![Fire Breath](assets/images/fire_breath_attack.JPG)
+
+* Winning the game:
+
+    - To win the game player has to drop Dragon's health to `0`
+
+    ![Win game](assets/images/wint_the_game.JPG)
+
+* Losing the game:
+
+    - To lose the game player has to lose all the health
+
+    ![Lose game](assets/images/game_over.JPG)
+
+
+### Feature Features
+
+* Allow user to distribute stats instead of hardcoding them
+
+* Add an extra attack or spell for player to use in a fight
+
+* Increase the size of the dungeon
+
+* Add more traps, chest, enemies
+
+* Make random paths
+
 
 
 
