@@ -33,7 +33,7 @@ def print_pause(message):
     to give enough time for a player to read the message
     """
     print(message)
-    time.sleep(2)
+    time.sleep(1.5)
 
 
 def start_game():
@@ -43,12 +43,12 @@ def start_game():
     """
     players_name = input('Please enter your character name:\n')
     player.name = players_name
-    print_pause(f'Your name is {player.name}!')
+    print(f'Your name is {player.name}!')
     current_player_health()
     current_player_attack()
     current_player_armor()
     current_player_potion()
-    print('\n-----------------------------------------------------\n') 
+    print('\n-----------------------------------------------------\n')
     intro()
 
 
@@ -56,14 +56,15 @@ def intro():
     """
     Prints the message to welcome player to the game
     and set the environment of the world
-    """    
+    """
     print_pause(f'Welcome, {player.name}!')
     print_pause("You find yourself at the entrance to the dungeon")
     print_pause("It full of dark secrets and treasurs")
     print_pause("But most important - it is a lair of the mighty dragon!")
-    print_pause("Will you defeat it, or will you die just like countless heroes died before you?")
-    print_pause("Are you ready to start?")
-    print('\n-----------------------------------------------------\n') 
+    print_pause("Will you defeat the dragon and earn the glory?")
+    print_pause("Or will you die like others before you?")
+    print_pause("So, are you ready to start?")
+    print('\n-----------------------------------------------------\n')
     player_start_selection()
 
 
@@ -95,7 +96,7 @@ def first_room():
     print_pause('One is on your left')
     print_pause('And the other one is on your right')
     print_pause('Which one will you choose?')
-    print_pause('Left or Right')
+    print_pause('"Left" or "Right"')
     corridor_selection()
 
 
@@ -121,16 +122,16 @@ def trap_room():
     Damage is random
     After that, it takes the player back to the prvious room
     """
-    print('\n-----------------------------------------------------\n')     
+    print('\n-----------------------------------------------------\n')
     print_pause('You enter the room to the right and trigger the trap')
     damage = random.randint(1, 5)
     print_pause(f'Trap deals {damage} damage')
     player.current_health -= damage
     current_player_health()
     print_pause('\n')
-    print_pause('After escaping the trap you notice this coridor is a dead end.')
+    print_pause('After escaping the trap you notice the dead end.')
     print_pause('You have to return back to the firt room')
-    print('\n-----------------------------------------------------\n') 
+    print('\n-----------------------------------------------------\n')
     first_room()
 
 
@@ -141,14 +142,14 @@ def second_room():
     If yes - player will attempt to open chest
     If no - player will skip the chest
     """
-    print('\n-----------------------------------------------------\n') 
+    print('\n-----------------------------------------------------\n')
     print_pause('You proceed farther into the dungeon')
     print_pause('You find yourself in the large room')
     print_pause('In the middle of the room you see a chest')
     print_pause('You approach to the chest and see the following writing: \n')
-    print_pause('"This chest is cursed. If you wish to open it you need to make a sacrifice."\n')
-
-    option = input('Do you dare to open it? "Y/Yes" to try and open, or any other key to leave the chest alone:\n')
+    print_pause('"The chest is cursed. To open you must make a sacrifice."\n')
+    print_pause('Do you dare to open it?')
+    option = input('"Y/Yes" to open, or any other key to leave the chest:\n')
 
     if option.lower() == 'y' or option.lower() == 'yes':
         open_chest()
@@ -163,21 +164,21 @@ def open_chest():
     Will take an input from the player to make sacrifice
     Checks for incorrect value and loops until player enters correct value
     """
-    print('\n-----------------------------------------------------\n')  
+    print('\n-----------------------------------------------------\n')
     print_pause('You decided to open the chest')
     print_pause('When you trying to open it you hear a voice in your head:\n')
-    print_pause('"If you wish to gain our treasures you must make a sacrifice..."')
+    print_pause('"To gain our treasures you must make a sacrifice..."')
     print_pause('"Some of your health or your potion for our treasuers"')
     print_pause('"What are you willing to sacrifice?"\n')
 
     while True:
-        sacrifice_option = input('Will you sacrifice "Health" or "Potion"?:\n')
-        if sacrifice_option.lower() == 'health' or sacrifice_option.lower() == 'potion':
-            option = sacrifice_option.lower()
+        s_option = input('Will you sacrifice "Health" or "Potion"?:\n')
+        if s_option.lower() == 'health' or s_option.lower() == 'potion':
+            option = s_option.lower()
             sacrifice(option)
             return False
         else:
-            print_pause('Please chose the correct option: "Health" or "Potion"!')
+            print_pause('Ivalid option. Select only "Health" or "Potion"!')
 
 
 def sacrifice(option):
@@ -186,7 +187,7 @@ def sacrifice(option):
     player will get some bonus:
     - for potion - extra attach and armor
     - for health - extra potion and attack
-    """   
+    """
     print_pause(f'You decided to sacrfice your {option}')
 
     if option == "health":
@@ -196,7 +197,7 @@ def sacrifice(option):
         player.attack += 3
         player.potion += 1
 
-        print_pause('As a reward, you receive "+3" to Attack, and "+1" to Potion')
+        print_pause('"Reward: you receive "+3" to Attack, and "+1" to Potion"')
         current_player_attack()
         current_player_potion()
 
@@ -206,7 +207,7 @@ def sacrifice(option):
 
         player.armor += 20
         player.attack += 2
-        print_pause('As a reward, you receive "+2" to Attack, and "+20" to Armor')
+        print_pause('"Reward: you receive "+2" to Attack, and "+20" to Armor"')
         current_player_attack()
         current_player_armor()
     dragon_lair()
@@ -217,8 +218,9 @@ def dragon_lair():
     Final room where the dragon lives
     It will introduce player to the dragon and start the fight
     """
-    print('\n-----------------------------------------------------\n')     
-    print_pause('You walk away from the chest and make your way deeper into the dungeon')
+    print('\n-----------------------------------------------------\n')
+    print_pause('You walk away from the chest')
+    print_pause('And heading deeper into the dungeon')
     print_pause('Finally you arrive to the last room')
     print_pause('You look around...')
     print_pause('The room is full of treasuers')
@@ -244,7 +246,6 @@ def final_fight():
     After player makes a choise they get attacked by a dragon
     Repeats until someone dies
     """
-    #os.system('clear')
     print_pause(f'\n{player.name} is fighting the {enemy.name}')
     current_player_health()
     current_player_potion()
@@ -259,13 +260,11 @@ def final_fight():
     print('"Running away has a very little chance of surviving"')
     print('-----------------------------------------------------')
 
-
     while True:
         move = input('>>> ')
         if move == '1':
             player_attack()
             return False
-        
         elif move == '2':
             if player.potion > 0:
                 use_potion()
@@ -285,22 +284,22 @@ def player_attack():
     Checks if dragon got any health left
     """
     print_pause(f'\n{player.name} attacks the {enemy.name}')
-    print('-----------------------------------------------------')    
+    print('-----------------------------------------------------')
     damage = random.randint(round(player.attack / 2), player.attack)
     if random.randint(1, 10) == 1:
         print_pause('You missed your hit')
         print_pause(f'You deal no damage to {enemy.name}')
-    else:    
+    else:
         if random.randint(1, 5) == 1:
-            damage = math.floor(damage * 1.5) 
-            print_pause(f'You got Critical Hit and deal higher damage') 
+            damage = math.floor(damage * 1.5)
+            print_pause(f'You got Critical Hit and deal higher damage')
             print_pause(f'You deal {damage} damage to {enemy.name}')
             enemy.current_health -= damage
-        else:  
-            print_pause(f'You deal {damage} damage to {enemy.name}')    
+        else:
+            print_pause(f'You deal {damage} damage to {enemy.name}')
             enemy.current_health -= damage
     check_enemy_health()
-    
+
 
 def use_potion():
     """
@@ -317,7 +316,7 @@ def use_potion():
         player.current_health = player.maxhealth
     current_player_health()
     enemy_attack()
-    
+
 
 def escape_fight():
     """
@@ -371,9 +370,9 @@ def enemy_attack():
     if random.randint(0, 3) <= 2:
         print_pause(f'{enemy.name} attacks with Base Attack')
         damage = random.randint(round(enemy.attack / 2), enemy.attack)
-        has_armor(damage)        
+        has_armor(damage)
     else:
-        print_pause(f'{enemy.name} attacks {player.name} with Fire Breath')        
+        print_pause(f'{enemy.name} attacks {player.name} with Fire Breath')
         if player.armor > 0:
             print_pause('It melts your armor and burns your skin underneath')
             print_pause(f'{enemy.name} does 3 damage to {player.name}')
@@ -384,12 +383,12 @@ def enemy_attack():
             print_pause(f'{enemy.name} does 8 damage to {player.name}')
             player.current_health -= 8
     check_player_health()
-    
+
 
 def has_armor(damage):
     """
     Checks if player got any armor left
-    If yes, reduces the armor    
+    If yes, reduces the armor
     If no armor then damaged cause directly to health
     """
     if player.armor > 0:
@@ -407,11 +406,11 @@ def close_game():
     """
     Stops the game
     """
-    print('\n-----------------------------------------------------\n')    
+    print('\n-----------------------------------------------------\n')
     print('The game is closing now!')
-    print('\n-----------------------------------------------------\n')  
+    print('\n-----------------------------------------------------\n')
 
-    
+
 def check_player_health():
     """
     Checks if player got any health left
@@ -447,7 +446,7 @@ def win():
     Notifies the player that they won the game
     Stops the game
     """
-    print('\n-----------------------------------------------------\n') 
+    print('\n-----------------------------------------------------\n')
     print_pause(f'You managed to defeat the {enemy.name}')
     print_pause('You earned all the glory and treasurs')
     print_pause('And from now on')
@@ -465,7 +464,7 @@ def lose():
     print_pause(f'The {enemy.name} has defeated {player.name}')
     print_pause('Unfortunately, you have fallen')
     print_pause('Just as many heroes have fallen before you')
-    print_pause('Who will be brave enough to try next?')    
+    print_pause('Who will be brave enough to try next?')
     close_game()
 
 
@@ -495,7 +494,7 @@ def current_enemy_health():
 
 
 """
-Create global variables to have access to Player character and Dragon enemy attributes
+Create global variables
 """
 character = Character()
 dragon = Dragon()
