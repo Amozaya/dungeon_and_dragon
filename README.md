@@ -159,21 +159,57 @@ I created functions that would access those attributes and print them out for a 
 
 I also created attack functions that would access the `Maxattack` attribute from the class and ue it in the formula to calculate the damage of the attack.
 
+Used `global` variables to containt Character and Dragon class to be able to access their attributes.
+
 ### Libraries
 
 I imported and used the following libraries:
 
 - `random` - used to create a randomize damage from attacks and trap, as well as the chance of critical damage and missed attack. Also, it used when rolling a die to see if escape is succssesful
 
-- `os` - used to run a command ```os.system(\`clear\`)``` to clear the screen when th fight starts. Helps to keep the console cleaner for the user
+- `os` - used to run a command ```os.system(\`clear\`)``` to clear the screen when the fight starts. Helps to keep the console cleaner for the user
 
 - `math` - used `math.floor` and `math.round` when calculating the damage
 
--`time` - used `time.sleep(1.5)` to reduce the time that instructions appear with, allowing more time for a user to read all of the instructions
+- `time` - used `time.sleep(1.5)` to reduce the time that instructions appear with, allowing more time for a user to read all of the instructions
 
 
 
+## Testing
 
+I tested this project manually by doing the following steps:
+
+* Running the code through PEP8 Python Validator to ensure there are no errors
+
+* Trying invalid inputs to ensure that the app won't accept it:
+
+    - Using empty input or incorrect input when a specific command required
+
+    - Enter character's name starting with en empty space ` ` or with a number
+
+* Tested the app in my local terminal and on Heroku to ensure it runs correctly
+
+### Bugs
+
+#### Fixed Bugs
+
+* First when I started writing the project I couldn't access and modify classes' attributes, so I had to create global variable that would be assign to classes and with their help I could use them in functions to modify the ttributes such as health, attack, and etc
+
+* Originally, the character's name was an empty string and it was required for a player to input the name, however the player could simply press `Enter` without any input and then the name would appear empty. To fix that I assigned the default name in Character class called `Hero`, and then created a loop that checks if user enters anything when assigning the name. If the input is empty then it will use the default name.
+
+* Another problem I found when entering the name is that user could simply enter the empty space as an imput by pressing `space bar`, so then the loop would replace the default name with the empty space, and once again the name would be empty. To fix that I created an `if` statement inside the loop that checks if the first character inside the unput is alphabetical. If yes, it will accept the name, if not, then it will ask user to enter the valid name that starts with a letter.
+
+* When writing the code for the damage I used formula `random.randint(maxattack /2, maxattack)`. Sometimes it could give a decimal number as a result, and numbers would start getting more confusing and harder to read for a user. So to fix that, I used `math.floor` and `math.round` to ensure that there are no decimal numbers and all the stats stay clean and easy to read for a user.
+
+#### Unfixed bugs
+
+* There is one bug that I coudn't fix. When working on the enemy attacks with player's armor I wanted to make a functions that checks if enemy's damage is higher than the armor, and if it is then it would reduce the armor to `0` and any excess damage will be caused to the player's health. However, when I tried to write the function I couldn't make the excess health to calculate correctly, so at the end I decided to not implement this function and simply just reduce the armor without any excess damage to health.
+
+#### Validator Testing
+
+* PEP8
+
+    - No errors were returned from PEP8online.com
 
 
 
