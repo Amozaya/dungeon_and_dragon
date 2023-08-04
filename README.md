@@ -212,35 +212,26 @@ I tested this project manually by doing the following steps:
     - No errors were returned from PEP8online.com
 
 
-
-    
-
-
-
-
-
-## Testing
-
-In this section I did some of the automated and manual tests in order to ensure that project is working correctly.
-
-
-
-
-
-
-
-
-
-
 ## Deployment
 
+This project was deployed using Code Institute's mock terminal for Heroku
 
+* Steps for deployment:
+
+    - Fork or clone this repository
+    - Create a new Heroku app
+    - Set the buildbacks to `Python` and `NodeJS` in that order
+    - Link the Heroku app to the repository
+    - Click on Deploy
+
+The app is deployed <a href="https://dungeon-and-dragon-041a95b72292.herokuapp.com/">here</a>
 
 
 ## Credits
 
-**Content**
-
+* Code Institute for the deployment terminal
+* <a href="https://www.youtube.com/watch?v=PRuDyx8aU38&t=89s">Run That</a> YouTube tutorial for inspirations and some ideas
+* <a href="https://codereview.stackexchange.com/questions/190946/text-based-python-rpg-game">Here</a> I got some ideas for a fight and how to use `global` variables
 
 
 
