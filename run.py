@@ -40,10 +40,24 @@ def start_game():
     """
     Ask a player to input the name for their character
     and asisgns it to the Character class
+    If player skips the name default "Hero" will be used
     """
-    print('Please enter your character name:\n')
-    players_name = input('>>> ')
-    player.name = players_name
+    print('Please enter your character name,')
+    print('or press "Enter" to skip\n')
+    """
+    Loop validates if name is empty
+    Or if first character is not a letter
+    """
+    while True:
+        players_name = input('>>> ')
+        if players_name != "":
+            if players_name[0].isalpha():
+                player.name = players_name
+                break
+            else:
+                print('Ivalid input. Name must start with a letter!')
+        else:
+            break
     print(f'Your name is {player.name}!')
     current_player_health()
     current_player_attack()
