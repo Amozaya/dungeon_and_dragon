@@ -41,7 +41,8 @@ def start_game():
     Ask a player to input the name for their character
     and asisgns it to the Character class
     """
-    players_name = input('Please enter your character name:\n')
+    print('Please enter your character name:\n')
+    players_name = input('>>> ')
     player.name = players_name
     print(f'Your name is {player.name}!')
     current_player_health()
@@ -73,7 +74,8 @@ def player_start_selection():
     Take player input to start/close the game
     Gives a message if input doesnt match and ask the enter selection once more
     """
-    player_choice = input('Press "Y" if ready, or "N" to exit:\n')
+    print_pause('Press "Y" if ready, or "N" to exit:\n')
+    player_choice = input('>>> ')
 
     if player_choice.lower() == 'y':
         first_room()
@@ -149,7 +151,8 @@ def second_room():
     print_pause('You approach to the chest and see the following writing: \n')
     print_pause('"The chest is cursed. To open you must make a sacrifice."\n')
     print_pause('Do you dare to open it?')
-    option = input('"Y/Yes" to open, or any other key to leave the chest:\n')
+    print_pause('"Y/Yes" to open, or "Enter" to leave the chest:\n')
+    option = input('>>> ')
 
     if option.lower() == 'y' or option.lower() == 'yes':
         open_chest()
@@ -172,7 +175,8 @@ def open_chest():
     print_pause('"What are you willing to sacrifice?"\n')
 
     while True:
-        s_option = input('Will you sacrifice "Health" or "Potion"?:\n')
+        print_pause('Will you sacrifice "Health" or "Potion"?:\n')
+        s_option = input('>>> ')
         if s_option.lower() == 'health' or s_option.lower() == 'potion':
             option = s_option.lower()
             sacrifice(option)
@@ -231,7 +235,7 @@ def dragon_lair():
     print_pause('The dragon has returned!')
     print_pause('There is no escape from this room')
     print_pause('You draw your sword and prepare to fight')
-    input('\nPress any key to start...')
+    input('\nPress "Enter" to start...')
     os.system('clear')
     final_fight()
 
