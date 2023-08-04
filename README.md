@@ -161,6 +161,12 @@ I also created attack functions that would access the `Maxattack` attribute from
 
 Used `global` variables to containt Character and Dragon class to be able to access their attributes.
 
+### Flowchart Diagram
+
+* Main Gameplay flow diagram:
+
+    ![Gameplay Diagram](assets/images/gameplay_flowchart.JPG)
+
 ### Libraries
 
 I imported and used the following libraries:

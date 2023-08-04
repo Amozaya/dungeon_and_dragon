@@ -95,7 +95,7 @@ def player_start_selection():
         first_room()
     elif player_choice.lower() == 'n':
         print_pause('You decided to exit the game\n')
-        exit()
+        close_game()
     else:
         print('Please select valid option: "Y" or "N" only\n')
         player_start_selection()
