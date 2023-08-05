@@ -44,7 +44,7 @@ It is possible to try and `escape` the fight, but it got a low chance of succsee
 
 * Chosing your path:
 
-    - In a few occassions player will be given a choice to chose the direction or their next action
+    - Player will be given a choice of the direction
 
     ![Room choice](assets/images/room_choice.JPG)
 
@@ -66,7 +66,7 @@ It is possible to try and `escape` the fight, but it got a low chance of succsee
 
     - Armor - protects the player from the attacks. If armor is `0` then all the damage goes to `health`. Base value is `20`, but can be increased by opening chest
 
-    - Potion - player can drink potion to restore some of their health. Doesn't restore armor. Base value is `2`, but can be increased or decreased by opening the chest
+    - Potion - player can drink the potion to restore some of their health. Doesn't restore armor. Base value is `2`, but can be increased or decreased by opening the chest
 
     - Max attack - the maximum damage player can do with base attack. There is a small chance of `miss` and `critical damage` present. Base attack `7`, but can be increased by opening the chest
 
@@ -74,7 +74,7 @@ It is possible to try and `escape` the fight, but it got a low chance of succsee
 
 * Dragon stats:
 
-    - Health - base calue is `60`. Cannot be restored. If health goes to `0` then player wins the game
+    - Health - base value is `60`. Cannot be restored. If health goes to `0` then player wins the game
 
     - Max attack - the maximum damage dragon can do with base attack, and base value is `10`. The is no critical damage
 
@@ -117,7 +117,7 @@ It is possible to try and `escape` the fight, but it got a low chance of succsee
 
         ![Destroyed armor](assets/images/destroy_armor.JPG)
 
-        - "Fire Breath" deals fire damage
+        - "Fire Breath" deals the fire damage
 
         - If player got armor, it deals high damage to the armor and small damage to health
 
@@ -153,7 +153,7 @@ It is possible to try and `escape` the fight, but it got a low chance of succsee
 
 ## Data Model
 
-For this game I used Character and Dragon class for game characters. It allowed me to store and modify the attributes, such as name, health, attack, armor, and potion.
+For this game I used Character and Dragon classes for game characters. It allowed me to store and modify the attributes, such as name, health, attack, armor, and potion.
 
 I created functions that would access those attributes and print them out for a user, so user is always aware what the stats are for their character and for the enemy. 
 
@@ -173,7 +173,7 @@ I imported and used the following libraries:
 
 - `random` - used to create a randomize damage from attacks and trap, as well as the chance of critical damage and missed attack. Also, it used when rolling a die to see if escape is succssesful
 
-- `os` - used to run a command ```os.system(\`clear\`)``` to clear the screen when the fight starts. Helps to keep the console cleaner for the user
+- `os` - used to run a command ```os.system(`clear`)``` to clear the screen when the fight starts. Helps to keep the console cleaner for the user
 
 - `math` - used `math.floor` and `math.round` when calculating the damage
 
@@ -187,11 +187,11 @@ I tested this project manually by doing the following steps:
 
 * Running the code through PEP8 Python Validator to ensure there are no errors
 
-* Trying invalid inputs to ensure that the app won't accept it:
+* Trying invalid inputs to ensure that the game won't accept it:
 
     - Using empty input or incorrect input when a specific command required
 
-    - Enter character's name starting with en empty space ` ` or with a number
+    - Enter character's name starting with en empty space or with a number
 
 * Tested the app in my local terminal and on Heroku to ensure it runs correctly
 
@@ -203,7 +203,7 @@ I tested this project manually by doing the following steps:
 
 * Originally, the character's name was an empty string and it was required for a player to input the name, however the player could simply press `Enter` without any input and then the name would appear empty. To fix that I assigned the default name in Character class called `Hero`, and then created a loop that checks if user enters anything when assigning the name. If the input is empty then it will use the default name.
 
-* Another problem I found when entering the name is that user could simply enter the empty space as an imput by pressing `space bar`, so then the loop would replace the default name with the empty space, and once again the name would be empty. To fix that I created an `if` statement inside the loop that checks if the first character inside the unput is alphabetical. If yes, it will accept the name, if not, then it will ask user to enter the valid name that starts with a letter.
+* Another problem I found when entering the name is that user could simply enter the empty space as an input by pressing `space bar`, so then the loop would replace the default name with the empty space, and once again the name would be empty. To fix that I created an `if` statement inside the loop that checks if the first character inside the unput is alphabetical. If yes, it will accept the name, if not, then it will ask user to enter the valid name that starts with a letter.
 
 * When writing the code for the damage I used formula `random.randint(maxattack /2, maxattack)`. Sometimes it could give a decimal number as a result, and numbers would start getting more confusing and harder to read for a user. So to fix that, I used `math.floor` and `math.round` to ensure that there are no decimal numbers and all the stats stay clean and easy to read for a user.
 

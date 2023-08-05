@@ -31,6 +31,7 @@ def print_pause(message):
     """
     Print a message after a short delay
     to give enough time for a player to read the message
+    'Code taken from Youtube Tutorial by "Run That"'
     """
     print(message)
     time.sleep(1.5)
